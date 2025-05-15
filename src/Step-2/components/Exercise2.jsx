@@ -2,9 +2,14 @@ import React, { useState } from "react";
 
 const Exercise2 = () => {
   const [text, setText] = useState([""]);
+
   function handleChange(e) {
-    console.log(text);
     setText(e.target.value);
+  }
+
+  function handleClick() {
+    setText("");
+    document.querySelector("input").value = "";
   }
 
   return (
@@ -20,6 +25,7 @@ const Exercise2 = () => {
           <p>Tu as écrit :</p>
           <p>{text}</p>
         </div>
+        <button onClick={handleClick}>Effacer</button>
       </div>
     </>
   );
