@@ -19,6 +19,10 @@ const Exercice1 = () => {
         setTask(e.target.value)
     }
 
+    function handleDelete(id) {
+        setList(list.filter(item => item.id !== id))
+        console.log('deleted', id)
+    }
 
 
     return (
@@ -30,8 +34,11 @@ const Exercice1 = () => {
                 placeholder='Ajouter une tâche' />
             <button onClick={handleClick}> Ajouter à la liste</button>
             <ul>
-                {list.map(p => (
-                    <li key={p.id}> {p.task} </li>
+                {list.map(item => (
+                    <li key={item.id}>
+                        {item.task}
+                        <button onClick={() => handleDelete(item.id)}>Supprimer</button>
+                    </li>
                 ))}
             </ul>
         </>
