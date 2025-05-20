@@ -28,9 +28,9 @@ const Exercice2 = () => {
                     <li key={film.id}>
                         {film.title}
                     </li>
-
                 ))
                 }
+                {filteredList.length === 0 && <p>Aucun film trouvé...</p>}
             </ul>
         </>
     )
