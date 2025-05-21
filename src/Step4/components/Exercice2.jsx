@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 const Exercice2 = () => {
     const [pokemons, setPokemons] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         async function getPokemons() {
@@ -18,11 +20,17 @@ const Exercice2 = () => {
                 console.log(json.results);
                 
             } catch (error) {
-                console.error(error.message);
+                setError(error.message)
+                
+            } finally {
+                setLoading(false)
             }
         }
         getPokemons()
     }, [])
+
+    if (loading) return <p>Chargement...</p>;
+    if (error) return <p>Erreur : {error}</p>;
 
     return (
         <>
@@ -32,7 +40,7 @@ const Exercice2 = () => {
             </h1>
               <ul>
                 {pokemons.map((pokemon, index) => (
-                    <li style={{display: 'flex', flexDirection: 'column',}} key={index}>{pokemon.name}
+                    <li style={{display: 'flex', flexDirection: 'column',}} key={index}>{pokemon.name} 
                     <img style={{aspectRatio: 1, width: "150px"}} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`} alt="" /></li>
                 ))}
             </ul>
